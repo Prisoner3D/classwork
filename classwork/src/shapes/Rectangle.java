@@ -10,7 +10,7 @@ public class Rectangle implements Shape {
 	}
 	public double perimeter()
 	{
-		return (length * 2 + width * 2)
+		return (length * 2 + width * 2);
 	}
 	public double area() 
 	{
