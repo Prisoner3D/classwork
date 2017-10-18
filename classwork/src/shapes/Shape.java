@@ -1,10 +1,12 @@
 package shapes;
 
-public interface Shape {
-	public abstract double perimeter()
-	{
-	}
-	public abstract double area()
-	{
-	}
+public interface Shape{
+	
+    public abstract double calculateArea();
+
+    public abstract double calculatePerimeter();
+
+    public abstract String toString();
+
 }
+
