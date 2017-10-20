@@ -6,7 +6,6 @@ package shapes;
  */
 public class Circle implements Shape{
 	
-    //Fields
     private int radius;
     private static double pi = 3.14;
 
@@ -20,13 +19,13 @@ public class Circle implements Shape{
     
     @Override
     public double calculateArea() {
-    	return pi * this.radius * this.radius;
+    	return pi * radius * radius;
     }
 
     @Override
     public double calculatePerimeter()
     {
-    	return 2 * this.radius * pi;
+    	return 2 * radius * pi;
     }
 
     @Override

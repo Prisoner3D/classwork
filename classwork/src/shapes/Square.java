@@ -2,7 +2,7 @@ package shapes;
 
 public class Square extends Rectangle {
 	
-    int side;
+    private int side;
 
     public Square(int side)
     {

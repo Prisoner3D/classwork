@@ -4,6 +4,7 @@ public class Parallelogram extends Rectangle{
 
 	private double angle;
 	
+<<<<<<< HEAD
 	public Parallelogram(int length, int width,double angle)
 	{
 		super(length,width);
@@ -25,4 +26,11 @@ public class Parallelogram extends Rectangle{
     {
     	return "Parallelogram Sides: " + side1 + side2 + side3 + side4 + " Area: " + this.calculateArea() + " Perimeter: " + this.calculatePerimeter();
     }
+=======
+	public Parallelogram(int length, int width, double angle) {
+		super(length, width);
+		this.angle = angle;
+	}
+
+>>>>>>> branch 'master' of https://github.com/Prisoner3D/classwork.git
 }
