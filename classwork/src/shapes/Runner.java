@@ -1,18 +1,17 @@
 package shapes;
-
 /**
- * @author Mr Levin
- * Created 10/16/2017
+ * @author Mr Levin Created 10/16/2017
  * 
- * Lab 2.1 shapes
- * Create implement all necessary methods in this package to run the code below successfully.
- * After your code below runs successfully, you will design, implement, and test a couple of your
- * own Shape classes.
+ *         Lab 2.1 shapes Create implement all necessary methods in this package
+ *         to run the code below successfully. After your code below runs
+ *         successfully, you will design, implement, and test a couple of your
+ *         own Shape classes.
  * 
- * Choose one of the following: Triangle, Pentagon, Hexagon, Heptagon, etc.
- * Choose one of the following: Rhombus, Trapezoid, Parallelogram, Kite
+ *         Choose one of the following: Triangle, Pentagon, Hexagon, Heptagon,
+ *         etc. Choose one of the following: Rhombus, Trapezoid, Parallelogram,
+ *         Kite
  * 
- * Both classes must extend shape, and implement all necessary methods.
+ *         Both classes must extend shape, and implement all necessary methods.
  */
 public class Runner {
 
@@ -21,6 +20,10 @@ public class Runner {
         Shape circle1 = new Circle(3);
         Shape rectangle1 = new Rectangle(10, 4);
         Shape square1 = new Square(10);
+        Shape parallelogram1 = new Parallelogram(10,5,90);
+        Shape triangle1 = new Triangle(1, 1, 1);
+        
+        System.out.println(parallelogram1.calculateArea());
 
         System.out.println("First test out the hard coded shape arraay.\n\n");
         Shape [] shapeArr = {circle1, rectangle1, square1};
