@@ -18,6 +18,14 @@ public class Cheese {
 		}
 		return str;
 	}
+	public static String[] twoOther(String[] str)
+	{
+		for (String x : str)
+		{
+			x = x + x;
+		}
+		return str;
+	}
 	public static void methodthatprintsout(String[] str)
 	{
 		for (String x : str)
