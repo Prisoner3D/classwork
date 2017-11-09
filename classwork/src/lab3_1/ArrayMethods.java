@@ -9,6 +9,19 @@ public class ArrayMethods {
 		{
 			System.out.println(item);
 		}
+
+		int[] test3 = {1,4,5,2};
+		int[] test4 = {1,2,4,9};
+		int[][]	test5 = productArray(test3,test4);
+		for (int[] row : test5)
+		{
+			for (int num: row)
+			{
+				System.out.print(num);
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
 	}
 	public static int[] removeDuplicates(int[] list)
 	{
@@ -32,7 +45,15 @@ public class ArrayMethods {
 	}
 	public static int[][] productArray(int[] arr1, int[] arr2)
 	{
-		return null;
+		int[][] products = new int[arr1.length][arr2.length];
+		for (int i = 0; i < arr1.length; i++)
+		{
+			for (int j = 0; j < arr2.length; j++)
+			{
+				products[i][j] = arr1[j] * arr2[i]; //Reversed...
+			}
+		}
+		return products;
 	}
 	public static int[][] pascalTriangle(int n)
 	{
