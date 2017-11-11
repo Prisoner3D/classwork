@@ -3,6 +3,7 @@ package lab3_1;
 public class ArrayMethods {
 	public static void main(String[] args)
 	{
+		/*
 		int[] test1 = {1,2,2,3,4};
 		int[] test2 = removeDuplicates(test1);
 		for (int item:test2)
@@ -22,6 +23,9 @@ public class ArrayMethods {
 			}
 			System.out.println();
 		}
+		*/
+		int[][] testtri = pascalTriangle(5);
+		printPascalTriangle(testtri);
 	}
 	public static int[] removeDuplicates(int[] list)
 	{
@@ -57,14 +61,47 @@ public class ArrayMethods {
 	}
 	public static int[][] pascalTriangle(int n)
 	{
-		return null;
+		int[][] triangle = new int[n][];
+		for (int i = 0; i < triangle.length; i++)
+		{
+			triangle[i] = new int [i + 1];
+			for (int j = 0; j < triangle[i].length; j++)
+			{
+				if (j == 0 || j == triangle[i].length - 1)
+				{
+					triangle[i][j] = 1;
+				}
+				else
+				{
+					triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+				}
+			}
+		}
+		return triangle;
 	}
 	public static void printPascalTriangle(int[][] pTriangle)
 	{
-		
+		int width = pTriangle[pTriangle.length - 1].length + pTriangle[pTriangle.length - 1].length - 1;
+		for (int[] row : pTriangle)
+		{
+			for (int i = 0; i < (width - (row.length + row.length - 1)) / 2; i++)
+			{
+				System.out.print(" ");
+			}
+			for (int num : row)
+			{
+				System.out.print(num);
+				System.out.print(" ");
+			}
+			for (int i = 0; i < (width - (row.length + row.length - 1)) / 2; i++)
+			{
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
 	}
 	
-	public static int[] appendArray(int[] arr, int num)
+	private static int[] appendArray(int[] arr, int num)
 	{
 		int[] temp = new int[arr.length + 1];
 		for (int i = 0; i < arr.length; i++)
