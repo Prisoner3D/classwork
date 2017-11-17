@@ -1,17 +1,20 @@
 package lab3_2;
 
+import java.util.Arrays;
+
 public class ArrayMethods2 {
 
 	public static void main(String[] args)
 	{
-		String[] test1 = {"a", "z"};
-		String[] test2 = {"db", "da"};
-		
-		String[] test3 = merge(test1, test2);
-		for (String test : test3)
+		String[] test1 = {"point", "tutorials"};
+		String[] test2 = {"zebra", "ha", "dbab", "dba", "point", "dab"};
+		int[] test3 = {5,1,7,8,9,5,2};
+		int answer = partition(test3);
+		for (int test : test3)
 		{
 			System.out.println(test);
 		}
+		System.out.println("answer: " + answer);
 	}
 	
 	public static String[] merge(String[] list1, String[] list2)
@@ -22,25 +25,16 @@ public class ArrayMethods2 {
 		int counter = 0;
 		while (copy1.length > 0 || copy2.length > 0)
 		{
-			String compare1;
-			String compare2;
+			String compare1 = "";
+			String compare2 = "";
 			if (copy1.length > 0)
 			{
 				compare1 = copy1[0];
-			}
-			else
-			{
-				compare1 = "";
 			}
 			if (copy2.length > 0)
 			{
 				compare2 = copy2[0];
 			}
-			else 
-			{
-				compare2 = "";
-			}
-			
 			if (compare1.equals("") && !compare2.equals(""))
 			{
 				answer[counter] = compare2;
@@ -54,33 +48,16 @@ public class ArrayMethods2 {
 			else
 			{
 				int winner = 0;
-				int charCounter = 0;
-				while (winner == 0)
+				if (compare1.compareTo(compare2) < 0)
 				{
-					System.out.println((int)compare1.charAt(charCounter));
-					System.out.println((int)compare2.charAt(charCounter));
-					if ((int)compare1.charAt(charCounter) == (int)compare2.charAt(charCounter))
-					{
-						charCounter++;
-					}
-
-					if ((int)compare1.charAt(charCounter) > (int)compare2.charAt(charCounter))
-					{
-						winner = 2;
-					}
-					else if ((int)compare1.charAt(charCounter) < (int)compare2.charAt(charCounter))
-					{
-						winner = 1;
-					}
-					
+					winner = 1;
 				}
-				
 				if (winner == 1)
 				{
 					answer[counter] = compare1;
 					copy1 = removeAtIndex(copy1, 0);
 				}
-				else if (winner == 2)
+				else
 				{
 					answer[counter] = compare2;
 					copy2 = removeAtIndex(copy2, 0);
@@ -93,11 +70,45 @@ public class ArrayMethods2 {
 
 	public static String[] mergeSort(String[] list)
 	{
-		return null;
+		if (list.length == 1)
+		{
+			return list;
+		}
+		else if (list.length > 2)
+		{
+			int middle = list.length / 2;
+			String[] left = Arrays.copyOfRange(list, 0, middle);
+			String[] right = Arrays.copyOfRange(list, middle, list.length);
+			return merge(mergeSort(left), mergeSort(right));
+		}
+		else
+		{
+			String[] left = Arrays.copyOfRange(list, 0, 1);
+			String[] right = Arrays.copyOfRange(list, 1, 2);
+			return merge(mergeSort(left), mergeSort(right));
+		}
 	}
 	public static int partition(int[] list)
 	{
-		return 1;
+		int pivot = list[0];
+		int i = 0;
+		for (int j = 1; j < list.length; j++)
+		{
+			if (list[j] <= pivot)
+			{
+				i++;
+				swap(list, i, j);
+			}
+		}
+		swap(list, i, 0);
+		return i;
+	}
+	
+	private static void swap(int[] a, int i, int j)
+	{
+	    int temp = a[i];
+	    a[i] = a[j];
+	    a[j] = temp;
 	}
 	
 	private static int[] appendArray(int[] arr, int num)

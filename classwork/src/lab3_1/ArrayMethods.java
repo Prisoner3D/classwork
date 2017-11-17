@@ -24,7 +24,7 @@ public class ArrayMethods {
 			System.out.println();
 		}
 		*/
-		int[][] testtri = pascalTriangle(5);
+		int[][] testtri = pascalTriangle(6);
 		printPascalTriangle(testtri);
 	}
 	public static int[] removeDuplicates(int[] list)
@@ -81,6 +81,8 @@ public class ArrayMethods {
 	}
 	public static void printPascalTriangle(int[][] pTriangle)
 	{
+		int maxLength = String.valueOf(pTriangle[pTriangle.length - 1][pTriangle[pTriangle.length - 1].length / 2]).length();
+		System.out.println(maxLength);
 		int width = pTriangle[pTriangle.length - 1].length + pTriangle[pTriangle.length - 1].length - 1;
 		for (int[] row : pTriangle)
 		{
@@ -88,9 +90,14 @@ public class ArrayMethods {
 			{
 				System.out.print(" ");
 			}
-			for (int num : row)
+			for (int i = 0; i < row.length / 2; i++)
 			{
-				System.out.print(num);
+				System.out.print(row[i]);
+				System.out.print(" ");
+			}
+			for (int i = row.length / 2; i < row.length; i++)
+			{
+				System.out.print(row[i]);
 				System.out.print(" ");
 			}
 			for (int i = 0; i < (width - (row.length + row.length - 1)) / 2; i++)
