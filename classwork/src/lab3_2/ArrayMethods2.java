@@ -17,6 +17,16 @@ public class ArrayMethods2 {
 		System.out.println("answer: " + answer);
 	}
 	
+	/**
+	 * This method takes in two different arrays and merges them in a sorted order
+	 * by comparing the elements in the array and placing them in their respective orders.
+	 * For strings, it compares the characters of the compared strings and for integer,
+	 * their values.
+	 * 
+	 * @param list1 test array 1 that will be merged with the second
+	 * @param list2 test array 2 that will be merged with the first
+	 * @return a String[] that will have all elements of the two parameters sorted
+	 */
 	public static String[] merge(String[] list1, String[] list2)
 	{
 		String[] copy1 = list1;
@@ -68,6 +78,15 @@ public class ArrayMethods2 {
 		return answer;
 	}
 
+	/**
+	 * This method takes in an unsorted array and arranges them in a sorted order through
+	 * Splitting the array into halves continuously until the smallest array has a length is 1.
+	 * It then compares the smaller arrays, merges them then sorts them and continuously does so
+	 * until we get the final sorted array.
+	 * 
+	 * @param list The array that needs to be sorted
+	 * @return the array sorted
+	 */
 	public static String[] mergeSort(String[] list)
 	{
 		if (list.length == 1)
@@ -88,6 +107,12 @@ public class ArrayMethods2 {
 			return merge(mergeSort(left), mergeSort(right));
 		}
 	}
+	
+	/**
+	 * 
+	 * @param list
+	 * @return
+	 */
 	public static int partition(int[] list)
 	{
 		int pivot = list[0];
