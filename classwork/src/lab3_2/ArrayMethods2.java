@@ -21,7 +21,7 @@ public class ArrayMethods2 {
 	 * This method takes in two different arrays and merges them in a sorted order
 	 * by comparing the elements in the array and placing them in their respective orders.
 	 * For strings, it compares the characters of the compared strings and for integer,
-	 * their values.
+	 * their values. It checks their values using the compareTo method.
 	 * 
 	 * @param list1 test array 1 that will be merged with the second
 	 * @param list2 test array 2 that will be merged with the first
@@ -80,9 +80,9 @@ public class ArrayMethods2 {
 
 	/**
 	 * This method takes in an unsorted array and arranges them in a sorted order through
-	 * Splitting the array into halves continuously until the smallest array has a length is 1.
+	 * Splitting the array into halves continuously using recursion until the smallest array has a length is 1.
 	 * It then compares the smaller arrays, merges them then sorts them and continuously does so
-	 * until we get the final sorted array.
+	 * until we get the final sorted array using the merge method written above
 	 * 
 	 * @param list The array that needs to be sorted
 	 * @return the array sorted
@@ -109,6 +109,11 @@ public class ArrayMethods2 {
 	}
 	
 	/**
+	 * This method takes the first element of the array and sets it as the pivot. The
+	 * pivot is used to test every element and see whether or not they are less or greater
+	 * than the pivot. All elements that are less than the pivot are swapped and moved to 
+	 * the left of the pivot and all elements that are greater than the pivot are swapped
+	 * and moved to the right of the pivot.
 	 * 
 	 * @param list
 	 * @return
@@ -129,6 +134,15 @@ public class ArrayMethods2 {
 		return i;
 	}
 	
+	/**
+	 * This helper method swaps elements of the int[] at i and j by setting int[i] to a temp
+	 * so that the value isn't lost. It then sets int[i] to int[j] and setting int[j] 
+	 * to the temp
+	 * 
+	 * @param a the int[] that is passed in where elements need to be swapped
+	 * @param i	the first number that needs to be swapped with the second
+	 * @param j the second number that needs to be swapped with the first
+	 */
 	private static void swap(int[] a, int i, int j)
 	{
 	    int temp = a[i];
@@ -136,6 +150,13 @@ public class ArrayMethods2 {
 	    a[j] = temp;
 	}
 	
+	/**
+	 * This helper method takes the num parameter and appends it to the arr parameter
+	 * 
+	 * @param arr an int[] that will have the num parameter appended to it
+	 * @param num an int that will be appended to the new array
+	 * @return an int[] with the appended int
+	 */
 	private static int[] appendArray(int[] arr, int num)
 	{
 		int[] temp = new int[arr.length + 1];
@@ -146,6 +167,13 @@ public class ArrayMethods2 {
 		temp[temp.length - 1] = num;
 		return temp;
 	}
+	
+	/**
+	 * 
+	 * @param arr
+	 * @param num
+	 * @return
+	 */
 	private static String[] removeAtIndex(String[] arr, int num)
 	{
 		if (num > arr.length)
