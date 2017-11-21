@@ -151,7 +151,9 @@ public class ArrayMethods2 {
 	}
 	
 	/**
-	 * This helper method takes the num parameter and appends it to the arr parameter
+	 * This helper method takes the num parameter and appends it to the arr parameter.
+	 * Uses a for loop to copy the entirety of the array and a statement that changes 
+	 * the last element of the new array to the num parameter.
 	 * 
 	 * @param arr an int[] that will have the num parameter appended to it
 	 * @param num an int that will be appended to the new array
@@ -169,10 +171,13 @@ public class ArrayMethods2 {
 	}
 	
 	/**
+	 * This helper method removes an element from an array using the num parameter
+	 * as the index of the arr parameter. It copies the entire arr that was passed in except for the 
+	 * index that was passed in. 
 	 * 
-	 * @param arr
-	 * @param num
-	 * @return
+	 * @param arr the String[] that will be modified
+	 * @param num the index at which the element needs to be removed from
+	 * @return a copy of String[] with the removed element
 	 */
 	private static String[] removeAtIndex(String[] arr, int num)
 	{
