@@ -22,7 +22,8 @@ public class ArrayMethods3 {
 		{
 			System.out.print(test2[i] + " ");
 		}
-		*/
+		*/ //Check runtime
+		
 	}
 	
 	public static void insertionSort(int[] list1) {
