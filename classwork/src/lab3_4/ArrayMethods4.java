@@ -11,6 +11,7 @@ public class ArrayMethods4 {
 		{
 			System.out.println(num);
 		}
+		//Heap
 	}
 	
 	/**
