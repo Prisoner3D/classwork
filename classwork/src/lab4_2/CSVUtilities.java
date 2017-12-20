@@ -65,7 +65,7 @@ public class CSVUtilities {
 		{
 			for (String line : CSVData)
 			{
-				String[] splitWords = line.split(",");
+				String[] splitWords = line.replaceAll("^\"", "").split("\"?(,|$)(?=(([^\"]*\"){2})*[^\"]*$) *\"?");
 				try {
 					ints.add(Integer.valueOf(splitWords[column]));
 				} catch (NumberFormatException e) {
@@ -82,7 +82,7 @@ public class CSVUtilities {
 		{
 			for (String line : CSVData)
 			{
-				String[] splitWords = line.split(",");
+				String[] splitWords = line.replaceAll("^\"", "").split("\"?(,|$)(?=(([^\"]*\"){2})*[^\"]*$) *\"?");
 				try {
 					doubles.add(Double.valueOf(splitWords[column]));
 				} catch (NumberFormatException e) {
