@@ -10,7 +10,7 @@ public class Runner {
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String fileLoc = "subway.csv";
 		CSVUtilities test = new CSVUtilities(new File(fileLoc));
-		List<String> columns = test.getDataString(5);
+		List<String> columns = test.getDataString(1);
 		for (String integer : columns) {
 			System.out.println(integer);
 		}
