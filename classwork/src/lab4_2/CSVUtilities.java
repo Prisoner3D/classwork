@@ -11,7 +11,7 @@ import java.util.List;
 public class CSVUtilities {
 	private ArrayList<String> CSVData = new ArrayList<String>();
 	private int numColumns;
-	
+	//Add test for empty csv entries
 	public CSVUtilities(File csv) throws FileNotFoundException, IOException
 	{
 		String line;
