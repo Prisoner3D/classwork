@@ -8,7 +8,7 @@ import java.util.List;
 public class Runner {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String fileLoc = "subway.csv";
+		String fileLoc = "contribution.csv";
 		CSVUtilities test = new CSVUtilities(new File(fileLoc));
 		List<String> columns = test.getDataString(0);
 		for (String integer : columns) {
