@@ -7,11 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class CSVUtilities {
 	private ArrayList<String> CSVData = new ArrayList<String>();
 	private int numColumns;
-	//Add test for empty csv entries
+	//Skip first entry
 	public CSVUtilities(File csv) throws FileNotFoundException, IOException
 	{
 		String line;
@@ -32,6 +34,28 @@ public class CSVUtilities {
 			numColumns = splitWords.length;
 		}
 	}
+
+	public Map<String, Integer> getRecipientNames(int recipient, int amount)
+	{
+		Map<String, Integer> recipientsAndAmount = new TreeMap<String, Integer>();
+		List<String> recipients = getDataString(recipient);
+		List<Integer> amounts = getDataInt(amount);
+		for (int i = 0; i < recipients.size() && i < amounts.size(); i++)
+		{
+			Integer addedAmount = amounts.get(i);
+			if (!recipientsAndAmount.containsKey(recipients.get(i)))
+			{
+				recipientsAndAmount.put(recipients.get(i), addedAmount);
+			}
+			else
+			{
+				Integer existingAmount = recipientsAndAmount.get(recipients.get(i));
+				recipientsAndAmount.put(recipients.get(i), addedAmount + existingAmount);
+			}
+		}
+		return recipientsAndAmount;
+	}
+	
 	public List<String> getColumnHeaders()
 	{
 		ArrayList<String> headers = new ArrayList<String>();
@@ -45,6 +69,7 @@ public class CSVUtilities {
 		}
 		return headers;
 	}
+	
 	public List<String> getDataString(int column)
 	{
 		ArrayList<String> strings = new ArrayList<String>();
@@ -58,6 +83,7 @@ public class CSVUtilities {
 		}
 		return strings;
 	}
+	
 	public List<Integer> getDataInt(int column)
 	{
 		ArrayList<Integer> ints = new ArrayList<Integer>();
@@ -75,6 +101,7 @@ public class CSVUtilities {
 		}
 		return ints;
 	}
+	
 	public List<Double> getDataDouble(int column)
 	{
 		ArrayList<Double> doubles = new ArrayList<Double>();
