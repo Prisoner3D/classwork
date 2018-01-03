@@ -16,19 +16,19 @@ import javafx.stage.Stage;
 
 
 public class TEST extends Application  {
-	private ArrayList<String> colors = new ArrayList<String>();
+	
 	
 	
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("HBox Experiment 1");
-        colors.add("red");
+        Simon simon = new Simon();
 
         Button red = new Button("red");
         Button blue = new Button("blue");
         Button green = new Button("green");
-        VBox vbox = new VBox(10);
-        vbox.setAlignment(Pos.BOTTOM_CENTER);
+        VBox vbox = new VBox(50);
+        vbox.setAlignment(Pos.CENTER);
         vbox.getChildren().add(red);
         vbox.getChildren().add(blue);
         vbox.getChildren().add(green);
@@ -37,9 +37,10 @@ public class TEST extends Application  {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("red test!");
-                int status = Methods.updateMove("red", colors);
+                int status = simon.updateMove("red");
                 if (status == 0)
                 {
+                	System.out.println("you got " + simon.getScore());
                 	red.setDisable(true);
                     blue.setDisable(true);
                     green.setDisable(true);
@@ -48,24 +49,32 @@ public class TEST extends Application  {
             }
         });
         blue.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
+        	@Override
             public void handle(ActionEvent event) {
                 System.out.println("blue test!");
-                red.setDisable(true);
-                blue.setDisable(true);
-                green.setDisable(true);
+                int status = simon.updateMove("blue");
+                if (status == 0)
+                {
+                	System.out.println("you got " + simon.getScore());
+                	red.setDisable(true);
+                    blue.setDisable(true);
+                    green.setDisable(true);
+                }
                 //rather calls functions which diables all buttons
             }
         });
         green.setOnAction(new EventHandler<ActionEvent>() {
-       	 
-            @Override
+        	@Override
             public void handle(ActionEvent event) {
                 System.out.println("green test!");
-                red.setDisable(true);
-                blue.setDisable(true);
-                green.setDisable(true);
+                int status = simon.updateMove("green");
+                if (status == 0)
+                {
+                	System.out.println("you got " + simon.getScore());
+                	red.setDisable(true);
+                    blue.setDisable(true);
+                    green.setDisable(true);
+                }
                 //rather calls functions which diables all buttons
             }
         });

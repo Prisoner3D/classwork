@@ -1,7 +1,8 @@
 package SimonTest;
 
+import java.util.List;
 import java.util.Random;
-
+//DELETE
 public class Methods {
 	public static void main(String[] args)
 	{
