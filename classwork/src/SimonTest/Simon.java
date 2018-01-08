@@ -31,6 +31,10 @@ public class Simon {
 		return score;
 	}
 	
+	public ArrayList<String> getColors() {
+		return colors;
+	}
+	
 	public int updateMove(String color)
 	{
 		if (in == null)
@@ -48,6 +52,7 @@ public class Simon {
 					score++;
 					System.out.println(test);
 					in = colors.iterator(); // starts new round
+					return 2; // round over
 				}
 				return 1; // correct input
 			}
