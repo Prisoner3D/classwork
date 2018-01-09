@@ -3,6 +3,7 @@ package lab4_2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Application;
@@ -20,19 +21,22 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
-public class Runner extends Application {
+public class Runner { //extends Application
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String fileLoc = "contribution.csv";
+		ArrayList<String> test1 = new ArrayList<String>();
 		CSVUtilities test = new CSVUtilities(new File(fileLoc));
 		Map<String, Integer> map = test.getRecipientNames(4, 38);
 		for (String integer : map.keySet()) {
-			System.out.println(integer);
-			System.out.println(map.get(integer));
+			test1.add(integer);
+			test1.add(map.get(integer).toString());
 		}
-		launch(args);
+		test.writeCSV(test1, 2);
+		
+		//launch(args);
 	}
-
+/*
     @Override public void start(Stage stage) {
         stage.setTitle("Bar Chart Sample");
         final CategoryAxis xAxis = new CategoryAxis();
@@ -56,4 +60,5 @@ public class Runner extends Application {
         stage.setScene(scene);
         stage.show();
     }
+*/
 }

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +14,12 @@ import java.util.TreeMap;
 public class CSVUtilities {
 	private ArrayList<String> CSVData = new ArrayList<String>();
 	private int numColumns;
+	private File csv;
 	//Skip first entry
 	public CSVUtilities(File csv) throws FileNotFoundException, IOException
 	{
 		String line;
+		this.csv = csv;
 		try (BufferedReader reader = new BufferedReader(new FileReader(csv)))
 		{
 			while ((line = reader.readLine()) != null)
@@ -118,5 +121,44 @@ public class CSVUtilities {
 			}
 		}
 		return doubles;
+	}
+	
+	public void writeCSV(List<String> text, int columns)
+	{
+		PrintWriter pw = null;
+		int counter = 0;
+		try {
+			pw = new PrintWriter(csv);
+		}
+		catch (FileNotFoundException e){
+			System.err.println(e);
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("TEST1,TEST2\r\n"); //change so that instead of int columns theres another list for columns
+		for (String string : text) {
+			if (string.indexOf(',') == -1)
+			{
+				sb.append(string);
+			}
+			else
+			{
+				sb.append("\"");
+				sb.append(string);
+				sb.append("\"");
+			}
+			counter++;
+			if (counter >= columns)
+			{
+				sb.append("\r\n");
+				counter = 0;
+				
+			}
+			else
+			{
+				sb.append(", ");
+			}
+		}
+		pw.write(sb.toString());
+		pw.close();
 	}
 }
