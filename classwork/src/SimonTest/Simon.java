@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import javafx.scene.paint.Color;
+
 public class Simon {
 	// need to add this to everything
 	// dont forget to comment out useless
-	private ArrayList<String> colors = new ArrayList<String>();
-	private String[] ref = {"red","blue","green"}; // change so that it works with different applications
+	private ArrayList<Color> colors = new ArrayList<Color>();
+	//private ArrayList<String> colors = new ArrayList<String>();
+	private Color[] reference = {Color.RED,Color.BLUE,Color.GREEN};
+	//private String[] ref = {"red","blue","green"}; // change so that it works with different applications
 	private Random random = new Random();
 	private Iterator in;
 	private int score;
@@ -19,9 +23,9 @@ public class Simon {
 		this.score = 0;
 	}
 
-	public String addRandomColor()
+	public Color addRandomColor()
 	{
-		String color = ref[random.nextInt(ref.length)];
+		Color color = reference[random.nextInt(reference.length)];
 		colors.add(color);
 		return color;
 	}
@@ -31,11 +35,11 @@ public class Simon {
 		return score;
 	}
 	
-	public ArrayList<String> getColors() {
+	public ArrayList<Color> getColors() {
 		return colors;
 	}
 	
-	public int updateMove(String color)
+	public int updateMove(Color color)
 	{
 		if (in == null)
 		{
@@ -48,7 +52,7 @@ public class Simon {
 				if (!in.hasNext()) // round is over
 				{
 					System.out.println("done");
-					String test = this.addRandomColor(); // adds another color to round
+					Color test = this.addRandomColor(); // adds another color to round
 					score++;
 					System.out.println(test);
 					in = colors.iterator(); // starts new round
