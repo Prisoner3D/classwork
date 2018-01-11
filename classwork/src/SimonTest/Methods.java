@@ -21,27 +21,11 @@ public class Methods {
 			if (i == simon.getColors().size()) {
 				timeline = new Timeline(new KeyFrame(Duration.seconds(i * DURATION), e -> {
 					for (Button button : buttons) {
-						button.setDisable(true);
-					}
-					if (current.equals(Color.RED)) {
-						for (Button button : buttons) {
-							if (button.getId() == (current.toString())) {
-								button.setDisable(false);
-							}
+						if (button.getId().equals(current.toString())) {
+							button.setDisable(false);
 						}
-					}
-					if (current.equals(Color.BLUE)) {
-						for (Button button : buttons) {
-							if (button.getId() == (current.toString())) {
-								button.setDisable(false);
-							}
-						}
-					}
-					if (current.equals(Color.GREEN)) {
-						for (Button button : buttons) {
-							if (button.getId() == (current.toString())) {
-								button.setDisable(false);
-							}
+						else {
+							button.setDisable(true);
 						}
 					}
 				}), new KeyFrame(Duration.seconds(i * DURATION + DELAY), e -> {
@@ -57,27 +41,11 @@ public class Methods {
 			} else {
 				timeline = new Timeline(new KeyFrame(Duration.seconds(i * DURATION), e -> {
 					for (Button button : buttons) {
-						button.setDisable(true);
-					}
-					if (current.equals(Color.RED)) {
-						for (Button button : buttons) {
-							if (button.getId() == (current.toString())) {
-								button.setDisable(false);
-							}
+						if (button.getId().equals(current.toString())) {
+							button.setDisable(false);
 						}
-					}
-					if (current.equals(Color.BLUE)) {
-						for (Button button : buttons) {
-							if (button.getId() == (current.toString())) {
-								button.setDisable(false);
-							}
-						}
-					}
-					if (current.equals(Color.GREEN)) {
-						for (Button button : buttons) {
-							if (button.getId() == (current.toString())) {
-								button.setDisable(false);
-							}
+						else {
+							button.setDisable(true);
 						}
 					}
 				}), new KeyFrame(Duration.seconds(i * DURATION + DELAY), e -> {
