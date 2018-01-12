@@ -1,5 +1,6 @@
 package SimonTest;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import javafx.animation.KeyFrame;
@@ -52,6 +53,8 @@ public class SimonSays extends Application  {
 		borderGlow4.setWidth(50);
 		borderGlow4.setHeight(50);
 
+		Button start = new Button("START");
+		
 		Button red = new Button("red");
 		red.setId(Color.RED.toString());
 		red.setEffect(borderGlow);
@@ -74,6 +77,8 @@ public class SimonSays extends Application  {
 		buttons.add(blue);
 		buttons.add(yellow);
 
+		HBox startContainer = new HBox(30);
+		
 		HBox hbox1 = new HBox(25);
 		VBox vbox = new VBox(25);
 		VBox vbox2 = new VBox(25);
@@ -92,6 +97,9 @@ public class SimonSays extends Application  {
 		green.setMaxWidth(Double.MAX_VALUE);
 		yellow.setMaxWidth(Double.MAX_VALUE);
 		
+		startContainer.getChildren().add(start);
+		
+		hbox1.getChildren().add(startContainer);
 		hbox1.getChildren().add(vbox);
 		hbox1.getChildren().add(vbox2);
 		hbox1.setAlignment(Pos.CENTER);
@@ -103,87 +111,93 @@ public class SimonSays extends Application  {
 		vbox2.getChildren().add(green);
 		vbox2.getChildren().add(yellow);
 		
-		Methods.showSequence(simon, buttons);
-		
-		red.setOnAction(new EventHandler<ActionEvent>() {
+		start.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				System.out.println("red test!");
-				int status = simon.updateMove(Color.RED);
-				if (status == 0) {
-					borderGlow.setHeight(0);
-					System.out.println("you got " + simon.getScore());
-					for (Button button : buttons) {
-						button.setDisable(true);
+				BackEnd.showSequence(simon, buttons);
+				
+				red.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						System.out.println("red test!");
+						int status = simon.updateMove(Color.RED);
+						if (status == 0) {
+							borderGlow.setHeight(0);
+							System.out.println("you got " + simon.getScore());
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+						}
+						if (status == 2) {
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+							BackEnd.showSequence(simon, buttons);
+						}
 					}
-				}
-				if (status == 2) {
-					for (Button button : buttons) {
-						button.setDisable(true);
+				});
+				blue.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						System.out.println("blue test!");
+						int status = simon.updateMove(Color.BLUE);
+						if (status == 0) {
+							System.out.println("you got " + simon.getScore());
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+						}
+						if (status == 2) {
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+							BackEnd.showSequence(simon, buttons);
+						}
 					}
-					Methods.showSequence(simon, buttons);
-				}
-			}
-		});
-		blue.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("blue test!");
-				int status = simon.updateMove(Color.BLUE);
-				if (status == 0) {
-					System.out.println("you got " + simon.getScore());
-					for (Button button : buttons) {
-						button.setDisable(true);
+				});
+				green.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						System.out.println("green test!");
+						int status = simon.updateMove(Color.GREEN);
+						if (status == 0) {
+							System.out.println("you got " + simon.getScore());
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+						}
+						if (status == 2) {
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+							BackEnd.showSequence(simon, buttons);
+						}
 					}
-				}
-				if (status == 2) {
-					for (Button button : buttons) {
-						button.setDisable(true);
+				});
+				yellow.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						System.out.println("yellow test!");
+						int status = simon.updateMove(Color.YELLOW);
+						if (status == 0) {
+							System.out.println("you got " + simon.getScore());
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+						}
+						if (status == 2) {
+							for (Button button : buttons) {
+								button.setDisable(true);
+							}
+							BackEnd.showSequence(simon, buttons);
+						}
 					}
-					Methods.showSequence(simon, buttons);
-				}
-			}
-		});
-		green.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("green test!");
-				int status = simon.updateMove(Color.GREEN);
-				if (status == 0) {
-					System.out.println("you got " + simon.getScore());
-					for (Button button : buttons) {
-						button.setDisable(true);
-					}
-				}
-				if (status == 2) {
-					for (Button button : buttons) {
-						button.setDisable(true);
-					}
-					Methods.showSequence(simon, buttons);
-				}
-			}
-		});
-		yellow.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("yellow test!");
-				int status = simon.updateMove(Color.YELLOW);
-				if (status == 0) {
-					System.out.println("you got " + simon.getScore());
-					for (Button button : buttons) {
-						button.setDisable(true);
-					}
-				}
-				if (status == 2) {
-					for (Button button : buttons) {
-						button.setDisable(true);
-					}
-					Methods.showSequence(simon, buttons);
-				}
+				});
 			}
 		});
         Scene scene = new Scene(hbox1, 400, 400);
-        //scene.getStylesheets().add("file:///C://Users//BT_1N3_20//eclipse-workspace//javafx//b.css"); //change
+        
+        //scene.getStylesheets().add(getClass().getResource("simon.css").toString()); // Doesn't work
         primaryStage.setScene(scene);
         primaryStage.show();
 

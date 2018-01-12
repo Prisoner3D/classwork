@@ -10,9 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class Methods {
-	private final static double DELAY = 0.1;
-	private final static double DURATION = 0.4;
+public class BackEnd {
+	private final static double DELAY = 0.4;
+	private final static double DURATION = 0.8;
 
 	public static void showSequence(Simon simon, ArrayList<Button> buttons) {
 		for (int i = 1; i <= simon.getColors().size(); i++) {
@@ -28,11 +28,11 @@ public class Methods {
 							button.setDisable(true);
 						}
 					}
-				}), new KeyFrame(Duration.seconds(i * DURATION + DELAY), e -> {
+				}), new KeyFrame(Duration.seconds((i * DURATION) + DELAY), e -> {
 					for (Button button : buttons) {
 						button.setDisable(true);
 					}
-				}), new KeyFrame(Duration.seconds(i * DURATION + DURATION), e -> {
+				}), new KeyFrame(Duration.seconds((i * DURATION) + DELAY + DELAY), e -> {
 					for (Button button : buttons) {
 						button.setDisable(false);
 					}
