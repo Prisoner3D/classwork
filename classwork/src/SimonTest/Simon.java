@@ -19,7 +19,7 @@ public class Simon {
 
 	public Simon() {
 
-		System.out.println(this.addRandomColor());
+		//System.out.println(this.addRandomColor());
 		this.score = 0;
 	}
 

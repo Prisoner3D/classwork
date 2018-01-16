@@ -1,14 +1,19 @@
 package SimonTest;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+
+import lab4_2.CSVUtilities;
 
 public class BackEnd {
 	private final static double DELAY = 0.4;
@@ -56,5 +61,16 @@ public class BackEnd {
 				timeline.play();
 			}
 		}
+	}
+	
+	public static void writeScores(Simon simon) throws FileNotFoundException, IOException {
+		CSVUtilities csvutil = new CSVUtilities(new File("simon.csv"));
+		List<String> scores = new ArrayList<String>();
+		scores.add("Scores:");
+		// BUG: util will collect names in column using int as temp
+		scores.addAll(csvutil.getDataString(0));
+		scores.add(simon.getScore()+"");
+		csvutil.writeCSV(scores, 1);
+		// Close csvutil?
 	}
 }

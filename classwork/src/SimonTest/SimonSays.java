@@ -1,27 +1,34 @@
 package SimonTest;
 
-import java.net.URL;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
+
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+
 
 public class SimonSays extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
+    	// CSS doesn't work
+    	// Change so that buttons dont glow when they dont need to
+    	// Add icon
+    	// Add desc
+    	// Fix csv
+    	// Add box where user adds name
+    	// Disable start button
+    	// Make less copypaste?
 		primaryStage.setTitle("Simon Says...");
 		Simon simon = new Simon();
 
@@ -83,6 +90,7 @@ public class SimonSays extends Application  {
 		VBox vbox = new VBox(25);
 		VBox vbox2 = new VBox(25);
 		
+		startContainer.setPrefHeight(100);
 		hbox1.setPrefHeight(50);
 		
 		vbox2.setPrefWidth(50);
@@ -98,6 +106,7 @@ public class SimonSays extends Application  {
 		yellow.setMaxWidth(Double.MAX_VALUE);
 		
 		startContainer.getChildren().add(start);
+		startContainer.setAlignment(Pos.CENTER);
 		
 		hbox1.getChildren().add(startContainer);
 		hbox1.getChildren().add(vbox);
@@ -115,15 +124,22 @@ public class SimonSays extends Application  {
 			@Override
 			public void handle(ActionEvent event) {
 				BackEnd.showSequence(simon, buttons);
-				
 				red.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						System.out.println("red test!");
+						//System.out.println("You pressed Red!");
 						int status = simon.updateMove(Color.RED);
 						if (status == 0) {
-							borderGlow.setHeight(0);
-							System.out.println("you got " + simon.getScore());
+							System.out.println("end game");
+							try {
+								BackEnd.writeScores(simon);
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							for (Button button : buttons) {
 								button.setDisable(true);
 							}
@@ -139,10 +155,19 @@ public class SimonSays extends Application  {
 				blue.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						System.out.println("blue test!");
+						//System.out.println("You pressed Blue!");
 						int status = simon.updateMove(Color.BLUE);
 						if (status == 0) {
-							System.out.println("you got " + simon.getScore());
+							System.out.println("end game");
+							try {
+								BackEnd.writeScores(simon);
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							for (Button button : buttons) {
 								button.setDisable(true);
 							}
@@ -158,10 +183,19 @@ public class SimonSays extends Application  {
 				green.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						System.out.println("green test!");
+						//System.out.println("You pressed Green!");
 						int status = simon.updateMove(Color.GREEN);
 						if (status == 0) {
-							System.out.println("you got " + simon.getScore());
+							System.out.println("end game");
+							try {
+								BackEnd.writeScores(simon);
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							for (Button button : buttons) {
 								button.setDisable(true);
 							}
@@ -177,10 +211,19 @@ public class SimonSays extends Application  {
 				yellow.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						System.out.println("yellow test!");
+						//System.out.println("You pressed Yellow!");
 						int status = simon.updateMove(Color.YELLOW);
 						if (status == 0) {
-							System.out.println("you got " + simon.getScore());
+							System.out.println("end game");
+							try {
+								BackEnd.writeScores(simon);
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							for (Button button : buttons) {
 								button.setDisable(true);
 							}

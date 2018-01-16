@@ -12,10 +12,13 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CSVUtilities {
+	 // change so that instead of int columns theres another list for columns
+	
 	private ArrayList<String> CSVData = new ArrayList<String>();
+	private String[] headers = null;
 	private int numColumns;
 	private File csv;
-	//Skip first entry
+	
 	public CSVUtilities(File csv) throws FileNotFoundException, IOException
 	{
 		String line;
@@ -33,8 +36,9 @@ public class CSVUtilities {
 		}
 		if (!CSVData.isEmpty())
 		{
-			String[] splitWords = CSVData.get(0).split(",");
-			numColumns = splitWords.length;
+			headers = CSVData.get(0).split(",");
+			CSVData.remove(0);
+			numColumns = headers.length;
 		}
 	}
 
@@ -134,7 +138,7 @@ public class CSVUtilities {
 			System.err.println(e);
 		}
 		StringBuilder sb = new StringBuilder();
-		sb.append("TEST1,TEST2\r\n"); //change so that instead of int columns theres another list for columns
+		//sb.append("TEST\r\n");
 		for (String string : text) {
 			if (string.indexOf(',') == -1)
 			{
