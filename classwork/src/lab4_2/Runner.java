@@ -21,10 +21,11 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
 
-public class Runner { //extends Application
+public class Runner extends Application {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		String fileLoc = "contribution.csv";
+		/* RUN ONCE TO COMBINE DATA
+		String fileLoc = "lab4_2.csv";
 		ArrayList<String> test1 = new ArrayList<String>();
 		CSVUtilities test = new CSVUtilities(new File(fileLoc));
 		Map<String, Integer> map = test.getRecipientNames(4, 38);
@@ -33,12 +34,18 @@ public class Runner { //extends Application
 			test1.add(map.get(integer).toString());
 		}
 		test.writeCSV(test1, 2);
-		
-		//launch(args);
+		*/
+		Application.launch(args);
 	}
-/*
-    @Override public void start(Stage stage) {
-        stage.setTitle("Bar Chart Sample");
+
+	@Override
+    public void start(Stage stage) throws FileNotFoundException, IOException {
+		String fileLoc = "lab4_2.csv";
+		CSVUtilities test = new CSVUtilities(new File(fileLoc));
+		List<String> recipients = test.getDataString(0);
+		List<Double> amounts = test.getDataDouble(1);
+
+        stage.setTitle("NYC Mayor Contribution Amounts");
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String,Number> bc = 
@@ -48,17 +55,15 @@ public class Runner { //extends Application
         yAxis.setLabel("Amount");
  
         XYChart.Series series1 = new XYChart.Series();
-        series1.setName("2003");       
-        series1.getData().add(new XYChart.Data(austria, 25601.34));
-        series1.getData().add(new XYChart.Data(brazil, 20148.82));
-        series1.getData().add(new XYChart.Data(france, 10000));
-        series1.getData().add(new XYChart.Data(italy, 35407.15));
-        series1.getData().add(new XYChart.Data(usa, 12000));      
+        series1.setName("2013");       
+        for (int i = 0; i < recipients.size() && i < amounts.size(); i++) {
+        	series1.getData().add(new XYChart.Data(recipients.get(i), amounts.get(i)));
+        }
         
-        Scene scene  = new Scene(bc,800,600);
-        bc.getData().addAll(series1, series2, series3);
+        Scene scene  = new Scene(bc,1600,900);
+        bc.getData().addAll(series1);
         stage.setScene(scene);
         stage.show();
     }
-*/
+
 }

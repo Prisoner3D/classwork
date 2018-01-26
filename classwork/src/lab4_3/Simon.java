@@ -1,4 +1,4 @@
-package SimonTest;
+package lab4_3;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,11 +16,13 @@ public class Simon {
 	private Random random = new Random();
 	private Iterator in;
 	private int score;
+	private boolean changing;
 
 	public Simon() {
-
+		this.addRandomColor();
 		//System.out.println(this.addRandomColor());
 		this.score = 0;
+		this.changing = false;
 	}
 
 	public Color addRandomColor() {
@@ -37,24 +39,34 @@ public class Simon {
 		return colors;
 	}
 
+	public boolean getChanging() {
+		return changing;
+	}
+	
+	public void setChanging(boolean changing) {
+		this.changing = changing;
+	}
+	
 	public int updateMove(Color color) {
-		if (in == null) {
-			in = colors.iterator(); // default in is not initialized
-		}
-		if (in.hasNext()) {
-			if (in.next().equals(color)) {
-				if (!in.hasNext()) // round is over
-				{
-					// System.out.println("done");
-					Color test = this.addRandomColor(); // adds another color to round
-					score++;
-					// System.out.println(test);
-					in = colors.iterator(); // starts new round
-					return 2; // round over
+		if (!changing) {
+			if (in == null) {
+				in = colors.iterator(); // default in is not initialized
+			}
+			if (in.hasNext()) {
+				if (in.next().equals(color)) {
+					if (!in.hasNext()) // round is over
+					{
+						//System.out.println("done");
+						Color test = this.addRandomColor(); // adds another color to round
+						score++;
+						//System.out.println(test);
+						in = colors.iterator(); // starts new round
+						return 2; // round over
+					}
+					return 1; // correct input
+				} else {
+					return 0; // incorrect input
 				}
-				return 1; // correct input
-			} else {
-				return 0; // incorrect input
 			}
 		}
 		return -1; // should never happen?

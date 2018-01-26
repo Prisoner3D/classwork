@@ -1,8 +1,9 @@
-package SimonTest;
+package lab4_3;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -10,25 +11,33 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+public class SimonSaysRunner extends Application  {
+	
+    private static String name;
 
-public class SimonSays extends Application  {
-    @Override
+	@Override
     public void start(Stage primaryStage) throws Exception {
-    	// CSS doesn't work
+    	//System.out.println(Color.RED.toString());
+    	//System.out.println(Color.BLUE.toString());
+    	//System.out.println(Color.GREEN.toString());
+    	//System.out.println(Color.YELLOW.toString());
+    	
+    	// add you lose and score
+    	
     	// Change so that buttons dont glow when they dont need to
-    	// Add icon
     	// Add desc
     	// Fix csv
     	// Add box where user adds name
-    	// Disable start button
-    	// Make less copypaste?
+    	
 		primaryStage.setTitle("Simon Says...");
 		Simon simon = new Simon();
 
@@ -62,21 +71,25 @@ public class SimonSays extends Application  {
 
 		Button start = new Button("START");
 		
-		Button red = new Button("red");
-		red.setId(Color.RED.toString());
+		Button red = new Button("Red");
+		red.setId("b" + Color.RED.toString());
 		red.setEffect(borderGlow);
+		red.setDisable(true);
 		
-		Button blue = new Button("blue");
-		blue.setId(Color.BLUE.toString());
+		Button blue = new Button("Blue");
+		blue.setId("b" + Color.BLUE.toString());
 		blue.setEffect(borderGlow2);
+		blue.setDisable(true);
 		
-		Button green = new Button("green");
-		green.setId(Color.GREEN.toString());
+		Button green = new Button("Green");
+		green.setId("b" + Color.GREEN.toString());
 		green.setEffect(borderGlow3);
+		green.setDisable(true);
 		
-		Button yellow = new Button("yellow");
-		yellow.setId(Color.YELLOW.toString());
+		Button yellow = new Button("Yellow");
+		yellow.setId("b" + Color.YELLOW.toString());
 		yellow.setEffect(borderGlow4);
+		yellow.setDisable(true);
 
 		ArrayList<Button> buttons = new ArrayList<Button>();
 		buttons.add(red);
@@ -84,19 +97,23 @@ public class SimonSays extends Application  {
 		buttons.add(blue);
 		buttons.add(yellow);
 
-		HBox startContainer = new HBox(30);
+		HBox startContainer = new HBox(100);
 		
-		HBox hbox1 = new HBox(25);
-		VBox vbox = new VBox(25);
-		VBox vbox2 = new VBox(25);
+		VBox main = new VBox(100);
 		
-		startContainer.setPrefHeight(100);
-		hbox1.setPrefHeight(50);
+		HBox hbox1 = new HBox(100);
+		VBox vbox = new VBox(75);
+		VBox vbox2 = new VBox(75);
 		
-		vbox2.setPrefWidth(50);
-		vbox.setPrefWidth(50);
+		startContainer.setPrefHeight(200);
+		hbox1.setPrefHeight(200);
 		
-		vbox2.setMaxHeight(Double.MAX_VALUE);
+		vbox2.setPrefWidth(200);
+		vbox.setPrefWidth(200);
+		
+		vbox2.setPrefHeight(Double.MAX_VALUE);
+		
+		red.setMaxHeight(0);
 		blue.setMaxHeight(Double.MAX_VALUE);
 		green.setMaxHeight(Double.MAX_VALUE);
 		yellow.setMaxHeight(Double.MAX_VALUE);
@@ -107,22 +124,27 @@ public class SimonSays extends Application  {
 		
 		startContainer.getChildren().add(start);
 		startContainer.setAlignment(Pos.CENTER);
-		
-		hbox1.getChildren().add(startContainer);
-		hbox1.getChildren().add(vbox);
-		hbox1.getChildren().add(vbox2);
-		hbox1.setAlignment(Pos.CENTER);
-		
 		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(red);
 		vbox.getChildren().add(blue);
 		vbox2.setAlignment(Pos.CENTER);
 		vbox2.getChildren().add(green);
 		vbox2.getChildren().add(yellow);
+		hbox1.getChildren().add(startContainer);
+		hbox1.getChildren().add(vbox);
+		hbox1.getChildren().add(vbox2);
+		hbox1.setAlignment(Pos.CENTER);
 		
+		// Text t = new Text (10, 20, "Hey " + name + "! Welcome to Simon Says! Press the buttons in the order that they blink up!");
+		TextArea textArea = new TextArea();
+		textArea.setPrefRowCount(3);
+		textArea.setPrefColumnCount(100);
+		textArea.setText("Hey " + name + "! Welcome to Simon Says! Press the buttons in the order that they blink up!");
+
 		start.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				start.setDisable(true);
 				BackEnd.showSequence(simon, buttons);
 				red.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
@@ -130,9 +152,9 @@ public class SimonSays extends Application  {
 						//System.out.println("You pressed Red!");
 						int status = simon.updateMove(Color.RED);
 						if (status == 0) {
-							System.out.println("end game");
+							//System.out.println("end game");
 							try {
-								BackEnd.writeScores(simon);
+								BackEnd.writeScores(simon, name, textArea);
 							} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -158,9 +180,9 @@ public class SimonSays extends Application  {
 						//System.out.println("You pressed Blue!");
 						int status = simon.updateMove(Color.BLUE);
 						if (status == 0) {
-							System.out.println("end game");
+							//System.out.println("end game");
 							try {
-								BackEnd.writeScores(simon);
+								BackEnd.writeScores(simon, name, textArea);
 							} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -186,9 +208,9 @@ public class SimonSays extends Application  {
 						//System.out.println("You pressed Green!");
 						int status = simon.updateMove(Color.GREEN);
 						if (status == 0) {
-							System.out.println("end game");
+							//System.out.println("end game");
 							try {
-								BackEnd.writeScores(simon);
+								BackEnd.writeScores(simon, name, textArea);
 							} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -214,9 +236,9 @@ public class SimonSays extends Application  {
 						//System.out.println("You pressed Yellow!");
 						int status = simon.updateMove(Color.YELLOW);
 						if (status == 0) {
-							System.out.println("end game");
+							//System.out.println("end game");
 							try {
-								BackEnd.writeScores(simon);
+								BackEnd.writeScores(simon, name, textArea);
 							} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -238,15 +260,25 @@ public class SimonSays extends Application  {
 				});
 			}
 		});
-        Scene scene = new Scene(hbox1, 400, 400);
-        
-        //scene.getStylesheets().add(getClass().getResource("simon.css").toString()); // Doesn't work
+		
+		
+		//main.getChildren().add(t);
+		main.getChildren().add(textArea);
+		main.getChildren().add(hbox1);
+        Scene scene = new Scene(main, 800, 500);
+        scene.getStylesheets().add(getClass().getResource("css\\simon.css").toExternalForm()); // CSS
+        Image applicationIcon = new Image(getClass().getResourceAsStream("img\\icon.jpg")); // ICON
+        primaryStage.getIcons().add(applicationIcon);
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
     public static void main(String[] args) {
+    	System.out.println("What is your name?");
+    	Scanner in = new Scanner(System.in);
+    	name = in.nextLine();
         Application.launch(args);
+        in.close();
     }
 }

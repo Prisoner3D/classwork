@@ -1,0 +1,51 @@
+.button {
+	-fx-background-color: #ffffff;
+	-fx-font-size: 32;
+}
+
+#b0xff0000ff {
+	-fx-background-color: #ff0000;
+	-fx-text-fill: white;
+}
+
+#b0x0000ffff {
+	-fx-background-color: #0000ff;
+	-fx-text-fill: white;
+}
+
+#b0x008000ff {
+	-fx-background-color: #00ff00;
+	-fx-text-fill: white;
+}
+
+#b0xffff00ff {
+	-fx-background-color: #ffff00;
+	-fx-text-fill: black;
+}
+
+.root{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Courier New";
+    -fx-background: rgb(0, 0, 0);
+}
+
+
+.text{
+    text-area-background: black;
+    -fx-text-fill: white;
+}
+
+.text .content {
+    -fx-background-color: text-area-background;
+
+}
+
+.text-area {
+    text-area-background: black;
+    -fx-text-fill: white;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background;
+
+}
